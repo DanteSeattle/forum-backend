@@ -1,5 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
-
+    protect_from_forgery with: :null_session
+    
     def index
         comments = Comment.all
         render json: comments, only: [:id, :title, :content, :user_id, :post_id]
