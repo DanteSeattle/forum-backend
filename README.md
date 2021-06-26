@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Front end repo located https://github.com/DanteSeattle/forum-frontend
+
+backend will need to run on port 3001 for frontend to connect.
