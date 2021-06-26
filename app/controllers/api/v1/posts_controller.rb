@@ -1,5 +1,4 @@
 class Api::V1::PostsController < ApplicationController
-    
 
     def index
         posts = Post.all
@@ -14,7 +13,7 @@ class Api::V1::PostsController < ApplicationController
     def create
         post = Post.new(post_params)
         if post.save
-            render json: post
+            render json: post, only: [:id, :title, :content, :user_id]
         else
             render json: { error: "unable to create post"}, status: 400
         end
@@ -24,7 +23,7 @@ class Api::V1::PostsController < ApplicationController
         post = Post.find(params[:id])
         if post
             post.update(post_params)
-            render json: { error: "post successfully updated"}, status: 200
+            render json: post, only: [:id, :title, :content, :user_id]
         else
             render json: { error: "unable to update post"}, status: 400
         end
@@ -43,7 +42,7 @@ class Api::V1::PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:title, :content, :user_id)
+        params.permit(:title, :content, :user_id)
     end
 
 end
